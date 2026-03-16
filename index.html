@@ -13,15 +13,16 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
+
             <div class="logo">
-                <h2>Uffy's<span>Empire</span></h2>
+
+                <h2> Uffy's <span> Empire</span> </h2>
             </div>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#shop">Shop</a></li>
-                <li><a href="#">Collections</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#footer">Contact</a></li>
             </ul>
             <div class="nav-icons">
                 <i class="fas fa-shopping-cart cart-icon"></i>
@@ -47,11 +48,20 @@
     <section id="shop" class="products-section">
         <div class="container">
             <h2 class="section-title">Our Signature Collection</h2>
+            <p class="promo">all products are currently sold at <strong>PROMO</strong> prices, offer valid while
+                stock last.</p>
             <div class="products-grid" id="products-grid">
                 <!-- Populated by JavaScript -->
             </div>
         </div>
+
+        <!-- NEW: See More Collections Button -->
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="shop.html" class="cta-btn">See More Collections</a>
+        </div>
+        </div>
     </section>
+
 
     <!-- Buy Now Modal -->
     <div id="buy-modal" class="modal">
@@ -59,105 +69,87 @@
             <span class="close-btn">&times;</span>
             <div class="modal-body">
                 <img id="modal-img" src="" alt="Product Image">
+
                 <div class="modal-details">
                     <h3 id="modal-name"></h3>
                     <p class="modal-price" id="modal-price"></p>
 
-                    <div class="transfer-box">
-                        <h4>Pay via Bank Transfer (NG)</h4>
-                        <p><strong>Bank:</strong> GTBank</p>
-                        <p><strong>Account Name:</strong> LuxeBed Ventures</p>
-                        <p><strong>Account Number:</strong> 0456789012</p>
-                        <p class="note">After transfer, send proof to WhatsApp <strong>+234 901 234 5678</strong></p>
+                    <!-- Quantity Selector -->
+                    <div class="quantity-selector" style="margin: 20px 0; text-align: center;">
+                        <label for="quantity">Quantity:</label><br>
+                        <div style="display: inline-flex; align-items: center; gap: 10px; margin-top: 8px;">
+                            <button type="button" id="qty-minus"
+                                style="width: 40px; height: 40px; font-size: 1.2em;">-</button>
+                            <span id="qty-display"
+                                style="font-size: 1.3em; min-width: 40px; text-align: center;">1</span>
+                            <button type="button" id="qty-plus"
+                                style="width: 40px; height: 40px; font-size: 1.2em;">+</button>
+                        </div>
                     </div>
 
-                    <button id="confirm-payment" class="confirm-btn">I've Completed the Transfer</button>
+                    <!-- Customer Info Fields -->
+                    <div style="margin: 15px 0;">
+                        <label for="customer-name">Your Full Name:</label><br>
+                        <input type="text" id="customer-name" placeholder="e.g. Sam Aaron" required
+                            style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+
+                    <div style="margin: 15px 0;">
+                        <label for="customer-whatsapp">WhatsApp Number (with country code):</label><br>
+                        <input type="tel" id="customer-whatsapp" placeholder="e.g. 2348012345678" required
+                            style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                        <small style="color: #666; display: block; margin-top: 4px;">We'll use this to confirm your
+                            order and delivery details.</small>
+                    </div>
+                    <!-- Delivery Option -->
+                    <div style="margin: 20px 0;">
+                        <label>Delivery Option:</label><br>
+                        <div style="display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="radio" name="delivery" value="pickup" checked>
+                                Pick-up at Store (Free)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="radio" name="delivery" value="delivery">
+                                Home Delivery
+                                <span style="color: #d32f2f; font-size: 0.9em; font-weight: bold;">(Extra charges
+                                    apply)</span>
+                            </label>
+                        </div>
+                        <small style="color: #666; display: block; margin-top: 8px;">
+                            Pick-up location: Our store in Jos (details sent after order confirmation)
+                        </small>
+                    </div>
+
+                    <!-- Transfer Instructions (kept from your original) -->
+                    <div class="transfer-box"
+                        style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                        <h4>Pay via Bank Transfer</h4>
+                        <p><strong>Bank:</strong> GTBank</p>
+                        <p><strong>Account Name:</strong> Uffy's Empire</p>
+                        <p><strong>Account Number:</strong> 0562663931</p>
+                        <p class="note" style="color: #d32f2f; font-weight: bold; margin-top: 12px;">
+                            After transfer, please send proof (screenshot) to WhatsApp: <strong>+234 8160330260</strong>
+                        </p>
+                    </div>
+
+                    <p style="text-align: center; color: #555; font-size: 0.95em; margin: 15px 0;">
+                        Click below to send your order details directly to our WhatsApp. We'll reply instantly to
+                        confirm!
+                    </p>
+
+                    <button id="confirm-payment" class="confirm-btn"
+                        style="width: 100%; padding: 14px; font-size: 1.1em;">
+                        Send Order to WhatsApp
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <section class="testimonials-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>What Our Customers Say</h2>
-                <p>Real stories from people who now sleep better every night</p>
-            </div>
-
-            <div class="testimonials-grid">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-image">
-                        <img src="https://cdn.shopify.com/s/files/1/0106/0755/8722/files/Woman_and_her_dog_sleeping_on_Weavve_s_Signature_TENCEL_Classic_Set_in_Cloud_White_600x600_187ecb74-792a-47d8-9e2d-1ecc977ac4b0.jpg?v=1717387510"
-                            alt="Customer sleeping peacefully on luxury bedding">
-                    </div>
-                    <div class="testimonial-content">
-                        <p class="quote">"These bamboo sheets are a game changer! So soft, breathable, and I no longer
-                            wake up sweaty. Best bedding purchase ever."</p>
-                        <div class="author">
-                            <span class="name">Aisha M.</span>
-                            <span class="location">Lagos</span>
-                        </div>
-                        <div class="stars">★★★★★</div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-image">
-                        <img src="https://media2.colourbox.com/kb1nrTP3KdOpds1BR7ZC85AlBtu_1DnuYpmSkMr7eqs/resize:fit:1600:1600:1/q:70/aHR0cHM6Ly9tZWRpYS5jb2xvdXJib3guY29tL2owTjI5QXNoZUJWcjE0TzJ2RnI0djItVks2cWhJdTZMRVA3SGN0MTJrSkkvcmVzaXplOmZpdDoxNjAwOjE2MDA6MS9wbGFpbi9teXMzL2NvbG91cmJveC5wbG92ZXBlbm5pbmcuLnJldmlldy8xNjAwcHhfQ09MT1VSQk9YNjMzNTM4MjQuanBn"
-                            alt="Happy woman relaxing on soft bed">
-                    </div>
-                    <div class="testimonial-content">
-                        <p class="quote">"The cotton percale set feels crisp and luxurious like a 5-star hotel. Washes
-                            beautifully too — no pilling after months."</p>
-                        <div class="author">
-                            <span class="name">Chidi O.</span>
-                            <span class="location">Abuja</span>
-                        </div>
-                        <div class="stars">★★★★★</div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-image">
-                        <img src="https://thumbs.dreamstime.com/b/young-man-smiling-relaxing-bed-morning-light-lies-comfortably-warmly-as-enjoys-moment-relaxation-soft-422446707.jpg"
-                            alt="Smiling man enjoying comfortable bedding">
-                    </div>
-                    <div class="testimonial-content">
-                        <p class="quote">"Finally found pillows that actually support my neck. Woke up pain-free for the
-                            first time in years. Worth every kobo!"</p>
-                        <div class="author">
-                            <span class="name">Tunde A.</span>
-                            <span class="location">Port Harcourt</span>
-                        </div>
-                        <div class="stars">★★★★★</div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 4 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-image">
-                        <img src="https://stylebyemilyhenderson.com/wp-content/uploads/2024/01/Emily-Henderson_How-To-Make-Your-Bed-Look-Better_OPENER.jpg"
-                            alt="Beautifully styled cozy bedroom bedding">
-                    </div>
-                    <div class="testimonial-content">
-                        <p class="quote">"The duvet cover set transformed our bedroom. Looks elegant and feels
-                            incredibly soft. My husband now looks forward to bedtime!"</p>
-                        <div class="author">
-                            <span class="name">Fatima K.</span>
-                            <span class="location">Ibadan</span>
-                        </div>
-                        <div class="stars">★★★★★</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
-    <footer class="site-footer">
+    <footer id="footer" class="site-footer">
         <div class="footer-container">
 
             <div class="footer-top">
@@ -196,10 +188,11 @@
                     <h4>Get in Touch</h4>
                     <address>
                         <p>Uffy's Empire</p>
-                        <p>12 Adeola Odeku Street</p>
-                        <p>Victoria Island, Lagos</p>
+                        <p>Shop 26</p>
+                        <p>Glory Plaza</p>
+                        <p>Zarmaganda, Rayfield Road, Jos.</p>
                         <p class="mt-2">Email: <a href="mailto:hello@uffysempire.com">hello@uffysempire.com</a></p>
-                        <p>Phone: <a href="tel:+2348123456789">+234 812 345 6789</a></p>
+                        <p>Phone: <a href="tel:+2348160330260">+234 8160330260</a></p>
                     </address>
                 </div>
             </div>
@@ -209,20 +202,7 @@
                 <div class="footer-bottom-left">
                     <p>© 2026 Uffy's Empire. All rights reserved.</p>
                 </div>
-
-                <div class="social-icons">
-                    <a href="#" aria-label="Instagram" class="social-link">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.326 3.608 1.301.975.975 1.24 2.242 1.301 3.608.058 1.266.069 1.646.069 4.85s-.012 3.584-.069 4.85c-.062 1.366-.326 2.633-1.301 3.608-.975.975-2.242 1.24-3.608 1.301-1.266.058-1.646.069-4.85.069s-3.584-.012-4.85-.069c-1.366-.062-2.633-.326-3.608-1.301-.975-.975-1.24-2.242-1.301-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.069-4.85c.062-1.366.326-2.633 1.301-3.608.975-.975 2.242-1.24 3.608-1.301 1.266-.058 1.646-.069 4.85-.069zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z" />
-                        </svg>
-                    </a>
-                    <a href="#" aria-label="Twitter/X" class="social-link">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                        </svg>
-                    </a>
+                <div class="social">
                     <a href="#" aria-label="Facebook" class="social-link">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path
@@ -235,8 +215,15 @@
                                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" />
                         </svg>
                     </a>
+                    <a href="https://www.tiktok.com/@uffy_luxurybedding" aria-label="TikTok" class="social-link">
+                        <svg viewBox="0 0 448 512" fill="currentColor">
+                            <path
+                                d="M448 209.91a162.5 162.5 0 0 1-106.8-38.6l-.07-108.8a35.66 35.66 0 0 0-35.6-35.6h-54.3a35.66 35.66 0 0 0-35.6 35.6v237.3a72.5 72.5 0 1 1-72.5-72.5c13.3 0 25.9 3.6 36.8 10.1l.07 108.8a108.8 108.8 0 1 1-108.8-108.8c20.7 0 40.2 5.9 56.8 16.3l.07-237.3a108.8 108.8 0 1 1 108.8 108.8c-20.7 0-40.2-5.9-56.8-16.3z" />
+                        </svg>
+                    </a>
                 </div>
             </div>
+        </div>
 
         </div>
     </footer>
