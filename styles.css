@@ -45,6 +45,12 @@ body {
     color: white;
 }
 
+.nav-container img {
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+}
+
 .logo span {
     color: var(--gold);
 }
@@ -100,7 +106,7 @@ body {
 .hero {
     height: 100vh;
     background-image: linear-gradient(rgba(94, 53, 177, 0.65), rgba(26, 26, 46, 0.75)),
-        url("https://images.unsplash.com/photo-1631049307264-da0ec9d70304");
+        url("images/hero section.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -152,6 +158,15 @@ body {
 .products-section {
     padding: 100px 5% 80px;
     background-color: white;
+}
+
+.promo {
+    text-align: center;
+    font-size: 1.15rem;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+    margin: 30px;
+    padding: 30px;
 }
 
 .container {
@@ -245,28 +260,88 @@ body {
     transform: scale(1.05);
 }
 
-/* Modal */
+/* Modal - Core fixes for scrolling & height control */
 .modal {
     display: none;
     position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
+    inset: 0;
+    /* modern way: top/right/bottom/left = 0 */
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     align-items: center;
     justify-content: center;
+    z-index: 2000;
+    overflow-y: auto;
+    /* ← allows the whole modal to scroll if needed */
+    padding: 20px 10px;
+    /* breathing room on small screens */
 }
 
 .modal-content {
     background: white;
     max-width: 700px;
     width: 90%;
+    max-width: 720px;
+    /* slightly wider cap is fine */
+    max-height: 92vh;
+    /* ← very important: prevent content taller than viewport */
+    overflow-y: auto;
+    /* ← THIS IS THE MAIN FIX: scroll inside the modal */
     border-radius: 20px;
-    overflow: hidden;
-    position: relative;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Make inner layout flexible and prevent crushing */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    min-height: 0;
+    /* helps flex children not overflow badly */
+}
+
+/* On larger screens → side-by-side image + details */
+@media (min-width: 768px) {
+    .modal-body {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    #modal-img {
+        width: 45%;
+        max-height: 420px;
+        /* prevent huge images from forcing scroll too early */
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    .modal-details {
+        padding-left: 2rem;
+    }
+}
+
+/* Small screens — make sure everything stacks nicely */
+@media (max-width: 767px) {
+    .modal-content {
+        max-height: 90vh;
+        /* tighter on phones */
+    }
+
+    #modal-img {
+        max-height: 280px;
+    }
+
+    .modal-body {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .confirm-btn {
+        padding: 14px;
+        font-size: 1.1rem;
+    }
 }
 
 .close-btn {
@@ -325,6 +400,13 @@ body {
     font-weight: 700;
     color: var(--gold);
     margin-bottom: 1.5rem;
+}
+
+/* Optional: style when max quantity is reached */
+#qty-plus.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #ccc;
 }
 
 .transfer-box {
@@ -611,12 +693,13 @@ address a:hover {
 }
 
 /* ── Bottom Bar ──────────────────────────────────────── */
+/* ── Bottom Bar ──────────────────────────────────────── */
 .footer-bottom {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    padding-top: 2.2rem;
+    padding: 2.2rem auto;
     border-top: 1px solid #222;
     font-size: 0.92rem;
     color: #888;
@@ -624,21 +707,27 @@ address a:hover {
 
 .footer-bottom-left {
     margin-bottom: 1rem;
+    /* space when it wraps on mobile */
 }
 
 .social-icons {
-    display: flex;
-    gap: 1.1rem;
+    display: inline-flex;
+    gap: 0.8rem;
+    /* slightly more breathing room between icons */
+    align-items: center;
 }
 
 .social-link {
-    color: #aaa;
-    width: 36px;
-    height: 36px;
-    display: grid;
+    color: white;
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
     place-items: center;
     border-radius: 50%;
+    /* circle is more modern & common */
     transition: all 0.25s ease;
+    background: rgba(255, 255, 255, 0.08);
+    /* subtle background */
 }
 
 .social-link svg {
@@ -649,24 +738,36 @@ address a:hover {
 .social-link:hover,
 .social-link:focus {
     color: white;
-    background: #222;
-    transform: translateY(-2px);
+    background: var(--purple);
+    transform: translateY(-3px);
 }
 
-/* ── Responsive ──────────────────────────────────────── */
-@media (max-width: 640px) {
-    .footer-top {
-        gap: 2.8rem 1.5rem;
+/* ── Push social icons to the right ─────────────────────────────── */
+@media (min-width: 640px) {
+    .footer-bottom {
+        flex-wrap: nowrap;
     }
 
-    .footer-brand {
-        margin-bottom: 1rem;
+    .footer-bottom-left {
+        margin-bottom: 0;
     }
 
+    .social-icons {
+        margin-left: auto;
+        /* ← this is the key line */
+    }
+}
+
+/* Mobile – center everything when stacked */
+@media (max-width: 639px) {
     .footer-bottom {
         flex-direction: column;
         text-align: center;
         gap: 1.4rem;
+    }
+
+    .social-icons {
+        justify-content: center;
     }
 }
 
@@ -717,5 +818,127 @@ address a:hover {
 
     .section-title {
         font-size: 2.3rem;
+    }
+}
+
+
+/* ── About Page Specific ──────────────────────────────────────────────── */
+
+.about-hero {
+    height: 60vh;
+    background-image: linear-gradient(rgba(94, 53, 177, 0.65), rgba(26, 26, 46, 0.75)),
+        url("images/about\ hero.jpg");
+    /* ← replace with your image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 70px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+}
+
+.about-hero h1 {
+    font-size: 4.2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.about-hero p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.about-section {
+    padding: 80px 5% 100px;
+    background: white;
+}
+
+.about-text {
+    font-size: 1.2rem;
+    color: #444;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+}
+
+.about-text.centered {
+    text-align: center;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto 4rem;
+}
+
+.value-card {
+    background: #f8f1e9;
+    padding: 2.2rem 1.8rem;
+    border-radius: 16px;
+    text-align: center;
+    border-left: 6px solid var(--gold);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-8px);
+}
+
+.value-card h3 {
+    color: var(--purple);
+    font-size: 1.45rem;
+    margin-bottom: 1rem;
+}
+
+.value-card p {
+    color: #555;
+    font-size: 1.05rem;
+}
+
+.cta-wrapper {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-hero {
+        height: 50vh;
+    }
+
+    .about-hero h1 {
+        font-size: 3.2rem;
+    }
+
+    .about-hero p {
+        font-size: 1.3rem;
+    }
+
+    .about-section {
+        padding: 60px 5% 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero h1 {
+        font-size: 2.6rem;
+    }
+
+    .about-hero p {
+        font-size: 1.15rem;
+    }
+
+    .value-card {
+        padding: 1.8rem 1.4rem;
     }
 }
