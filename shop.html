@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uffy's Empire • Premium Beddings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h2>Uffy's <span> Empire</span></h2>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <i class="fas fa-shopping-cart cart-icon"></i>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Products Section -->
+    <section id="shop" class="products-section">
+        <div class="container">
+            <h2 class="section-title">Our Signature Collection</h2>
+            <p class="promo">all products are currently sold at <strong>PROMO</strong> prices, offer valid while
+                stock last.</p>
+            <div class="products-grid" id="products-grid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Buy Now Modal -->
+
+    <!-- Buy Now Modal -->
+    <div id="buy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-body">
+                <img id="modal-img" src="" alt="Product Image">
+
+                <div class="modal-details">
+                    <h3 id="modal-name"></h3>
+                    <p class="modal-price" id="modal-price"></p>
+
+                    <!-- Quantity Selector -->
+                    <div class="quantity-selector" style="margin: 20px 0; text-align: center;">
+                        <label for="quantity">Quantity:</label><br>
+                        <div style="display: inline-flex; align-items: center; gap: 10px; margin-top: 8px;">
+                            <button type="button" id="qty-minus"
+                                style="width: 40px; height: 40px; font-size: 1.2em;">-</button>
+                            <span id="qty-display"
+                                style="font-size: 1.3em; min-width: 40px; text-align: center;">1</span>
+                            <button type="button" id="qty-plus"
+                                style="width: 40px; height: 40px; font-size: 1.2em;">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Customer Info Fields -->
+                    <div style="margin: 15px 0;">
+                        <label for="customer-name">Your Full Name:</label><br>
+                        <input type="text" id="customer-name" placeholder="e.g. Sam Aaron" required
+                            style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+
+                    <div style="margin: 15px 0;">
+                        <label for="customer-whatsapp">WhatsApp Number (with country code):</label><br>
+                        <input type="tel" id="customer-whatsapp" placeholder="e.g. 2348012345678" required
+                            style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                        <small style="color: #666; display: block; margin-top: 4px;">We'll use this to confirm your
+                            order and delivery details.</small>
+                    </div>
+                    <!-- Delivery Option -->
+                    <div style="margin: 20px 0;">
+                        <label>Delivery Option:</label><br>
+                        <div style="display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="radio" name="delivery" value="pickup" checked>
+                                Pick-up at Store (Free)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="radio" name="delivery" value="delivery">
+                                Home Delivery
+                                <span style="color: #d32f2f; font-size: 0.9em; font-weight: bold;">(Extra charges
+                                    apply)</span>
+                            </label>
+                        </div>
+                        <small style="color: #666; display: block; margin-top: 8px;">
+                            Pick-up location: Our store in Jos (details sent after order confirmation)
+                        </small>
+                    </div>
+
+                    <!-- Transfer Instructions (kept from your original) -->
+                    <div class="transfer-box"
+                        style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                        <h4>Pay via Bank Transfer</h4>
+                        <p><strong>Bank:</strong> GTBank</p>
+                        <p><strong>Account Name:</strong> Uffy's Empire</p>
+                        <p><strong>Account Number:</strong> 0562663931</p>
+                        <p class="note" style="color: #d32f2f; font-weight: bold; margin-top: 12px;">
+                            After transfer, please send proof (screenshot) to WhatsApp: <strong>+234 8160330260</strong>
+                        </p>
+                    </div>
+
+                    <p style="text-align: center; color: #555; font-size: 0.95em; margin: 15px 0;">
+                        Click below to send your order details directly to our WhatsApp. We'll reply instantly to
+                        confirm!
+                    </p>
+
+                    <button id="confirm-payment" class="confirm-btn"
+                        style="width: 100%; padding: 14px; font-size: 1.1em;">
+                        Send Order to WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="site-footer">
+        <div class="footer-container">
+
+            <div class="footer-top">
+                <!-- Column 1 - Brand / About snippet -->
+                <div class="footer-brand">
+                    <h3 class="brand-name">Uffy's Empire</h3>
+                    <p class="brand-tagline">Discover quality. Shop smarter.</p>
+                </div>
+
+                <!-- Column 2 - Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/shop">Shop All</a></li>
+                        <li><a href="/collections/new-arrivals">New Arrivals</a></li>
+                        <li><a href="/collections/best-sellers">Best Sellers</a></li>
+                        <li><a href="/pages/about-us">About Us</a></li>
+                        <li><a href="/pages/contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 - Customer Service -->
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="/pages/shipping">Shipping & Delivery</a></li>
+                        <li><a href="/pages/returns">Returns & Refunds</a></li>
+                        <li><a href="/pages/size-guide">Size Guide</a></li>
+                        <li><a href="/pages/faq">FAQs</a></li>
+                        <li><a href="/pages/track-order">Track Order</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 - Contact & Address -->
+                <div class="footer-column contact-column">
+                    <h4>Get in Touch</h4>
+                    <address>
+                        <p>Uffy's Empire</p>
+                        <p>Shop 26</p>
+                        <p>Glory Plaza</p>
+                        <p>Zarmaganda, Rayfield Road, Jos.</p>
+                        <p class="mt-2">Email: <a href="mailto:hello@uffysempire.com">hello@uffysempire.com</a></p>
+                        <p>Phone: <a href="tel:+2348160330260">+234 8160330260</a></p>
+                    </address>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>© 2026 Uffy's Empire. All rights reserved.</p>
+                </div>
+                <div class="social"> <a href="#" aria-label="Facebook" class="social-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127C15.849 3.038 14.888 3 13.629 3c-2.07 0-3.492.633-3.492 3.492v2.605H7.332v3.209h2.805v8.198h3.26z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="WhatsApp" class="social-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" />
+                        </svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@uffy_luxurybedding" aria-label="TikTok" class="social-link">
+                        <svg viewBox="0 0 448 512" fill="currentColor">
+                            <path
+                                d="M448 209.91a162.5 162.5 0 0 1-106.8-38.6l-.07-108.8a35.66 35.66 0 0 0-35.6-35.6h-54.3a35.66 35.66 0 0 0-35.6 35.6v237.3a72.5 72.5 0 1 1-72.5-72.5c13.3 0 25.9 3.6 36.8 10.1l.07 108.8a108.8 108.8 0 1 1-108.8-108.8c20.7 0 40.2 5.9 56.8 16.3l.07-237.3a108.8 108.8 0 1 1 108.8 108.8c-20.7 0-40.2-5.9-56.8-16.3z" />
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+    </footer>
+
+    <script src=" script.js"></script>
+</body>
+
+</html>
