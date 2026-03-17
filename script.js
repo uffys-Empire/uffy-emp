@@ -251,6 +251,56 @@ const products = [
         desc: "Ultra-soft 100% mulberry silk for the ultimate sleep experience"
     },
 ];
+
+// Cart as object: { productId: { ...productData, quantity: number } }
+let cart = {};
+
+// Load cart from localStorage on page load
+function loadCart() {
+    const saved = localStorage.getItem('cart');
+    if (saved) {
+        cart = JSON.parse(saved);
+    }
+    updateCartCount();
+}
+
+// Save cart to localStorage
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Add (or increase quantity)
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    if (cart[productId]) {
+        cart[productId].quantity += 1;
+    } else {
+        cart[productId] = { ...product, quantity: 1 };
+    }
+
+    saveCart();
+    updateCartCount();
+
+    // Nice feedback
+    alert(`Added ${product.name} to cart (${cart[productId].quantity} in cart now)`);
+}
+
+// Update cart icon number
+function updateCartCount() {
+    const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+    const countEl = document.getElementById('cart-count');
+    if (countEl) {
+        countEl.textContent = totalItems;
+        countEl.style.display = totalItems > 0 ? 'inline-block' : 'none';
+    }
+}
+
+// Initialize
+loadCart();
+
+
 // Populate products
 const productsGrid = document.getElementById('products-grid');
 
@@ -270,16 +320,20 @@ if (productsGrid) {
 
     productsToShow.forEach(product => {
         const cardHTML = `
-            <div class="product-card">
-                <img src="${product.img}" alt="${product.name}">
-                <div class="product-info">
-                    <h3>${product.name}</h3>
-                    <p>${product.desc}</p>
-                    <div class="price">${product.displayPrice}</div>
-                    <button class="buy-btn" data-id="${product.id}">Buy Now</button>
-                </div>
+    <div class="product-card">
+        <img src="${product.img}" alt="${product.name}">
+        <div class="product-info">
+            <h3>${product.name}</h3>
+            <p>${product.desc}</p>
+            <div class="price">${product.displayPrice}</div>
+            <div class="action-buttons" style="display: flex; gap: 10px; margin-top: 12px;">
+                
+                <button class="buy-btn" data-id="${product.id}">Buy Now</button>
+                <button class="add-to-cart-btn" data-id="${product.id}">Add to Cart</button>
             </div>
-        `;
+        </div>
+    </div>
+`;
         productsGrid.innerHTML += cardHTML;
     });
 }// Modal elements
@@ -358,6 +412,11 @@ deliveryRadios.forEach(radio => {
 
 // Open modal
 document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('add-to-cart-btn')) {
+        const productId = parseInt(e.target.getAttribute('data-id'));
+        addToCart(productId);
+        return; // prevent bubbling if needed
+    }
     if (e.target.classList.contains('buy-btn')) {
         const productId = parseInt(e.target.getAttribute('data-id'));
         currentProduct = products.find(p => p.id === productId);
