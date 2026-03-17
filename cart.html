@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart • Uffy's Empire</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Reuse your navbar here (copy from index.html) -->
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <div class="logo">
+
+                <h2> Uffy's <span> Empire</span> </h2>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+
+                <div class="cart-icon" style="position: relative; cursor: pointer;">
+                    <a href="cart.html"> <i class="fas fa-shopping-cart"></i></a>
+                    <span id="cart-count" style="
+            position: absolute;
+            top: -8px;
+            padding: 5px;
+            padding-bottom: 10px;
+            right: -10px;
+            background: #d32f2f;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            display: none;
+        ">0</span>
+                </div>
+                <div class="hamburger" id="hamburger">...</div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <main class="container" style="padding: 40px 20px;">
+        <h1>Your Cart</h1>
+        <div id="cart-items"></div>
+        <div id="cart-summary" style="margin-top: 30px; text-align: right;"></div>
+        <div style="margin-top: 20px; text-align: center;">
+            <button id="clear-cart"
+                style="padding: 12px 24px; background: var(--dark); color: white; border: none; border-radius: 6px; margin-right: 12px;">Clear
+                Cart</button>
+            <button id="checkout-cart"
+                style="padding: 12px 32px; background: var(--purple); color: white; border: none; border-radius: 6px; font-weight: bold;">Send
+                Cart to WhatsApp</button>
+        </div>
+    </main>
+
+    <!-- Footer copy-paste -->
+
+
+    <!-- Footer -->
+    <footer id="footer" class="site-footer">
+        <div class="footer-container">
+
+            <div class="footer-top">
+                <!-- Column 1 - Brand / About snippet -->
+                <div class="footer-brand">
+                    <h3 class="brand-name">Uffy's Empire</h3>
+                    <p class="brand-tagline">Discover quality. Shop smarter.</p>
+                </div>
+
+                <!-- Column 2 - Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/shop">Shop All</a></li>
+                        <li><a href="/collections/new-arrivals">New Arrivals</a></li>
+                        <li><a href="/collections/best-sellers">Best Sellers</a></li>
+                        <li><a href="/pages/about-us">About Us</a></li>
+                        <li><a href="/pages/contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 - Customer Service -->
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="/pages/shipping">Shipping & Delivery</a></li>
+                        <li><a href="/pages/returns">Returns & Refunds</a></li>
+                        <li><a href="/pages/size-guide">Size Guide</a></li>
+                        <li><a href="/pages/faq">FAQs</a></li>
+                        <li><a href="/pages/track-order">Track Order</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 - Contact & Address -->
+                <div class="footer-column contact-column">
+                    <h4>Get in Touch</h4>
+                    <address>
+                        <p>Uffy's Empire</p>
+                        <p>Shop 26</p>
+                        <p>Glory Plaza</p>
+                        <p>Zarmaganda, Rayfield Road, Jos.</p>
+                        <p class="mt-2">Email: <a href="mailto:dyamtal@gmail.com">dyamtal@gmail.com</a></p>
+                        <p>Phone: <a href="tel:+2348160330260">+234 8160330260</a></p>
+                    </address>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>© 2026 Uffy's Empire. All rights reserved.</p>
+                </div>
+                <div class="social">
+                    <a href="#" aria-label="Facebook" class="social-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127C15.849 3.038 14.888 3 13.629 3c-2.07 0-3.492.633-3.492 3.492v2.605H7.332v3.209h2.805v8.198h3.26z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="WhatsApp" class="social-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" />
+                        </svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@uffy_luxurybedding" aria-label="TikTok" class="social-link">
+                        <svg viewBox="0 0 448 512" fill="currentColor">
+                            <path
+                                d="M448 209.91a162.5 162.5 0 0 1-106.8-38.6l-.07-108.8a35.66 35.66 0 0 0-35.6-35.6h-54.3a35.66 35.66 0 0 0-35.6 35.6v237.3a72.5 72.5 0 1 1-72.5-72.5c13.3 0 25.9 3.6 36.8 10.1l.07 108.8a108.8 108.8 0 1 1-108.8-108.8c20.7 0 40.2 5.9 56.8 16.3l.07-237.3a108.8 108.8 0 1 1 108.8 108.8c-20.7 0-40.2-5.9-56.8-16.3z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Cart rendering (add this at end of script.js or here)
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            const summary = document.getElementById('cart-summary');
+            if (!container) return;
+
+            container.innerHTML = '';
+            let total = 0;
+
+            if (Object.keys(cart).length === 0) {
+                container.innerHTML = '<p style="text-align:center; font-size:1.2rem;">Your cart is empty. <a href="shop.html">Shop now</a>.</p>';
+                summary.innerHTML = '';
+                return;
+            }
+
+            Object.values(cart).forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                const row = document.createElement('div');
+                row.style = "display: flex; align-items: center; gap: 20px; padding: 15px; border-bottom: 1px solid #eee;";
+                row.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" style="width: 90px; height: 90px; object-fit: cover; border-radius: 6px;">
+                    <div style="flex: 1;">
+                        <h4>${item.name}</h4>
+                        <p>₦${item.price.toLocaleString()} × ${item.quantity} = ₦${itemTotal.toLocaleString()}</p>
+                    </div>
+                    <button class="remove-item" data-id="${item.id}" style="background: #d32f2f; color: white; border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer;">Remove</button>
+                `;
+                container.appendChild(row);
+            });
+
+            summary.innerHTML = `<h3>Total: ₦${total.toLocaleString('en-NG')}</h3>`;
+        }
+
+        document.addEventListener('click', e => {
+            if (e.target.classList.contains('remove-item')) {
+                const id = parseInt(e.target.getAttribute('data-id'));
+                delete cart[id];
+                saveCart();
+                renderCart();
+                updateCartCount();
+            }
+        });
+
+        document.getElementById('clear-cart')?.addEventListener('click', () => {
+            if (confirm('Clear entire cart?')) {
+                cart = {};
+                saveCart();
+                renderCart();
+                updateCartCount();
+            }
+        });
+
+        document.getElementById('checkout-cart')?.addEventListener('click', () => {
+            if (Object.keys(cart).length === 0) return alert("Cart is empty!");
+
+            let message = `Hello Uffy's Empire!\n\nI will like to order the following:\n\n`;
+            let grandTotal = 0;
+
+            Object.values(cart).forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                grandTotal += itemTotal;
+                message += `• ${item.name} × ${item.quantity} = ₦${itemTotal.toLocaleString()}\n`;
+            });
+
+            message += `\nTotal: ₦${grandTotal.toLocaleString()}\n\n`;
+            // message += `Delivery preference: ... (add your name/number/delivery later or prompt for it)`;
+
+            const waNumber = "2348160330260";
+            window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        });
+
+        // Run on cart page
+        if (document.getElementById('cart-items')) {
+            renderCart();
+        }
+    </script>
+</body>
+
+</html>
