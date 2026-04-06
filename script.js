@@ -349,8 +349,8 @@ if (productsGrid) {
     let productsToShow;
 
     if (document.querySelector('.hero')) {
-        // We're on the homepage (has hero section) → show only first 6
-        productsToShow = products.slice(0, 6);
+        // We're on the homepage (has hero section) → show only first 12
+        productsToShow = products.slice(0, 12);
     } else {
         // We're on shop.html (no hero) → show all
         productsToShow = products;
